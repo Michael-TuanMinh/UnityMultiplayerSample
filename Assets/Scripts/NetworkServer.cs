@@ -50,18 +50,12 @@ public class NetworkServer : MonoBehaviour
         m.player.cubeColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
         SendToClient(JsonUtility.ToJson(m), c);
 
-        NetworkObjects.NetworkPlayer newPlayer = new NetworkObjects.NetworkPlayer();
-        newPlayer.id = c.InternalId.ToString();
-        newPlayer.cubeColor = m.player.cubeColor;
-        serverMessage.players.Add(newPlayer);
+        serverMessage.players.Add(m.player);
         timer.Add(0.0f);
 
         for (int i = 0; i < m_Connections.Length; i++)
         {
-            PlayerConnectMsg p = new PlayerConnectMsg();
-            p.newPlayer.id = c.InternalId.ToString();
-            p.newPlayer.cubeColor = m.player.cubeColor;
-            SendToClient(JsonUtility.ToJson(p), m_Connections[i]);
+            SendToClient(JsonUtility.ToJson(m.player), m_Connections[i]);
         }
 
         SendToClient(JsonUtility.ToJson(serverMessage), c);

@@ -75,7 +75,6 @@ public class NetworkClient : MonoBehaviour
                 foreach (var it in suMsg.players)
                 {
                     SpawnPlayers(it);
-                    Debug.Log("Spawn player with id: " + it.id);
                 }
                 break;
             default:
