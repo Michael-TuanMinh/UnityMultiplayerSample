@@ -33,11 +33,8 @@ public class NetworkServer : MonoBehaviour
 
     void SendToClient(string message, NetworkConnection c)
     {
-        if (!c.IsCreated)
-        {
-            Debug.LogError("Connection not created");
-            return;
-        }
+        if (!c.IsCreated) return;
+
         var writer = m_Driver.BeginSend(NetworkPipeline.Null, c);
         NativeArray<byte> bytes = new NativeArray<byte>(Encoding.ASCII.GetBytes(message), Allocator.Temp);
         writer.WriteBytes(bytes);
@@ -118,7 +115,7 @@ public class NetworkServer : MonoBehaviour
 
                 list.droppedPlayers.Add(serverMessage.players[i]);
                 serverMessage.players.RemoveAt(i);
-                //timer[i] = 0;
+                timer[i] = 0;
                 i--;
 
                 Debug.Log("Unrespone for more than 5 seconds");

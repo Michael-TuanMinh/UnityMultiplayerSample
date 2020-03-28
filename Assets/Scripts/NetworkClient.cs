@@ -49,7 +49,7 @@ public class NetworkClient : MonoBehaviour
 
         switch (header.cmd)
         {
-            case Commands.HANDSAKE:
+            case Commands.HANDSHAKE:
                 HandshakeMsg hsMsg = JsonUtility.FromJson<HandshakeMsg>(recMsg);
                 myID = hsMsg.player.id;
                 break;

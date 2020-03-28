@@ -7,7 +7,7 @@ namespace NetworkMessages
     public enum Commands
     {
         PLAYER_CONNECT,
-        HANDSAKE,
+        HANDSHAKE,
         PLAYER_UPDATE,
         PLAYER_INPUT,
         SERVER_UPDATE,
@@ -71,7 +71,7 @@ namespace NetworkMessages
 
         public HandshakeMsg()
         {
-            cmd = Commands.HANDSAKE;
+            cmd = Commands.HANDSHAKE;
             player = new NetworkObjects.NetworkPlayer();
         }
     }
